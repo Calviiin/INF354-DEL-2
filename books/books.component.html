@@ -1,0 +1,87 @@
+<nav class="navbar navbar-dark bg-dark">
+  <button class="btn btn-warning"  [routerLink]="['/home']">Home</button>
+     <a class="navbar-brand text-white">Books Admin</a>
+</nav>
+
+    <div class="card">  
+        <div class="card-header" style="text-align:center">  
+            <b>Welcome to the Books Admin Page</b>  
+        </div>  
+
+        <div class="card-body">  
+            <form  #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">  
+                <div class="row">  
+
+                    <div class="form-group col-sm-3">  
+                        <label>Book ID</label> <br>
+                        <input name="Id" #Id="ngModel" [(ngModel)]="service.formData.Id"  Tooltip="Enter Book Id"   placeholder="Enter Book Id" required>  
+                        <div class="Validation-error" *ngIf="Id.invalid && Id.touched">This Field is required.</div>
+                        </div>  
+
+                        <div class="form-group col-sm-3">  
+                            <label for="Name">Book Name</label> <br>
+                            <input type="text" name="Name" #Name="ngModel" [(ngModel)]="service.formData.Name"  Tooltip="Enter Book Name"  placeholder="Enter Book Name" required>  
+                            </div>  
+
+                            <div class="form-group col-sm-3">  
+                                <label for="Description">Book Description</label>  
+                                <input type="text"   name="Description" #Description="ngModel" [(ngModel)]="service.formData.Description" Tooltip=" Enter Book Description" placeholder="Enter Description" placeholder="Enter Book Name" required >  
+                                </div>  
+
+                                <div class="form-group col-sm-3">  
+                                    <label for="Author">Author</label> <br>
+                                    <input type="text" name="Author" #Author="ngModel" [(ngModel)]="service.formData.Author"  placeholder="Enter Book Author" required >  
+                                    </div>  
+                                </div> 
+
+                                <div class="form-group col-sm-3">  
+                                    <label for="ReleaseYear">Release Year</label>  
+                                    <input type="text" name="ReleaseYear" #ReleaseYear="ngModel" [(ngModel)]="service.formData.ReleaseYear"   placeholder="Enter Release Year" required >  
+                                  </div>  
+
+                                <div class="form-group col-sm-3">  
+                                    <label for="Price">Price</label><br> 
+                                    <input type="text" name="Price" #Price="ngModel" [(ngModel)]="service.formData.Price"   placeholder="Enter Book Price" required>  
+                                  </div>  
+
+                                <br><br>
+
+                                <div class="row">  
+                                    <div class="form-group col-sm-3">  
+                                        <button type="submit"[disabled]="form.invalid" class="btn btn-primary" >Add Book</button>  
+                                    </div>  
+                                </div>  
+
+                            </form>  
+                        </div>  
+
+                        <div class="card-footer">  
+                            <div class="col-lg-12 table-responsive">  
+                                <table class="table table-striped">  
+                                    <thead>  
+                                        <tr ngclass="btn-primary">  
+                                            <th>ID</th>  
+                                            <th>Book Name</th>  
+                                            <th>Book Description</th>  
+                                            <th>Book Author</th>  
+                                            <th>Release Year</th>  
+                                            <th>Price</th>  
+                                            <th></th>  
+                                        </tr>  
+                                    </thead>  
+                                    <tbody>  
+  <tr *ngFor="let boo of service.list">
+    <td (click)="populateForm(Id)">[{{boo.Id}}]</td>
+    <td (click)="populateForm(boo)">[{{boo.Name}}]</td>
+    <td (click)="populateForm(boo)">[{{boo.Description}}]</td>
+    <td (click)="populateForm(boo)">[{{boo.Author}}]</td>
+    <td (click)="populateForm(boo)">[{{boo.ReleaseYear}}]</td>
+    <td (click)="populateForm(boo)">[{{boo.Price}}]</td>
+    <td><button (click)="onDelete(boo.Id)" class="btn btn-sm btn-outline-danger">Remove</button></td>
+  </tr>
+  <tr>test</tr>
+                                    </tbody>  
+                                </table>  
+                            </div>  
+                        </div>  
+                    </div>    
